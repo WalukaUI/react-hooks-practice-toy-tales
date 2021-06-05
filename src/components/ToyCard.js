@@ -1,17 +1,26 @@
 import React from "react";
 
-function ToyCard() {
+function ToyCard({Tcard,deleteCard,changeLikes}) {
+
+  function handleDelete(e){
+    e.preventDefault()
+    deleteCard(Tcard.id)
+  }
+  function handleLike(e){
+    e.preventDefault()
+    changeLikes(Tcard.id,Tcard.likes)
+  }
   return (
     <div className="card">
-      <h2>{"" /* Toy's Name */}</h2>
+      <h2>{Tcard.name}</h2>
       <img
-        src={"" /* Toy's Image */}
-        alt={"" /* Toy's Name */}
+        src={Tcard.image}
+        alt={`${Tcard.name}`}
         className="toy-avatar"
       />
-      <p>{"" /* Toy's Likes */} Likes </p>
-      <button className="like-btn">Like {"<3"}</button>
-      <button className="del-btn">Donate to GoodWill</button>
+      <p>{`${Tcard.likes}` } Likes </p>
+      <button className="like-btn"onClick={(e)=>handleLike(e)}>Like {"<3"}</button>
+      <button className="del-btn" onClick={(e)=>handleDelete(e)}>Donate to GoodWill</button>
     </div>
   );
 }
